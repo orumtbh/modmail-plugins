@@ -10,6 +10,7 @@ from discord.ext import commands
 from core import checks
 from core.models import PermissionLevel
 
+
 class GiveawayPlugin(commands.Cog):
     """
     Host giveaways on your server with this ~~amazing~~ plugin
@@ -295,6 +296,7 @@ class GiveawayPlugin(commands.Cog):
     async def reroll(self, ctx: commands.Context, _id: str, winners_count: int):
         """
         Reroll the giveaway
+
         **Usage:**
         {prefix}giveaway reroll <message_id> <winners_count>
         """
@@ -384,6 +386,7 @@ class GiveawayPlugin(commands.Cog):
     async def cancel(self, ctx: commands.Context, _id: str):
         """
         Stop an active giveaway
+
         **Usage:**
         {prefix}giveaway stop <message_id>
         """
