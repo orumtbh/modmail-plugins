@@ -10,7 +10,6 @@ from discord.ext import commands
 from core import checks
 from core.models import PermissionLevel
 
-##https://github.com/officialpiyush/modmail-plugins/blob/master/giveaway/giveaway.py##
 class GiveawayPlugin(commands.Cog):
     """
     Host giveaways on your server with this ~~amazing~~ plugin
