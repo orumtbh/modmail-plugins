@@ -142,7 +142,7 @@ class GiveawayPlugin(commands.Cog):
                         )
                         await message.edit(embed=embed)
                         await channel.send(
-                            f":XiaoJoy: Congratulations {winners_text}, you have won **{giveaway['item']}**! :XiaoJoy:"
+                            f"<:XiaoJoy:805882042494484511> Congratulations {winners_text}, you have won **{giveaway['item']}**! <:XiaoJoy:805882042494484511>"
                         )
                         try:
                             self.active_giveaways.pop(str(giveaway["message"]))
@@ -379,7 +379,7 @@ class GiveawayPlugin(commands.Cog):
                 embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
                 await message.edit(embed=embed)
                 await ctx.channel.send(
-                    f":XiaoJoy: Congratulations {winners_text}, you have won **{embed.title}**!:XiaoJoy: "
+                    f"<:XiaoJoy:805882042494484511> Congratulations {winners_text}, you have won **{embed.title}**! <:XiaoJoy:805882042494484511>"
                 )
                 del winners_text, winners, winners_count, reacted_users, embed
                 break
