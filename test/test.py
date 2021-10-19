@@ -218,7 +218,6 @@ class GiveawayPlugin(commands.Cog):
         if cancel_check(giveawya_item) is True:
             await ctx.send("Cancelled.")
             return
-        embed.title = giveaway_item.content
 
         await ctx.send(
             embed=self.generate_embed("How many winners are to be selected?")
