@@ -1,4 +1,71 @@
+import asyncio
+import contextlib
+import functools
+from collections import defaultdict
+from colorsys import rgb_to_hsv
+from copy import deepcopy
+from datetime import timezone
+from typing import Iterable, List, Optional, Union
 
+import discord
+from discord.ext import commands
+
+from core import checks
+from core.models import getLogger, PermissionLevel
+from core.paginator import EmbedPaginatorSession
+from .checks import is_allowed_by_role_hierarchy, my_role_hierarchy
+from .converters import (
+    Args,
+    AssignableRole,
+    EmojiRoleGroup,
+    ObjectConverter,
+    PERMS,
+    UnionEmoji,
+)
+from .utils import (
+    delete_quietly,
+    guild_roughly_chunked,
+    human_join,
+    humanize_roles,
+    paginate,
+)
+
+logger = getLogger(__name__)
+
+
+def get_audit_reason(moderator: discord.Member):
+    return f"Moderator: {moderator}."
+
+
+class ReactRules:
+    NORMAL = "NORMAL"  # Allow multiple.
+    UNIQUE = "UNIQUE"  # Remove existing role when assigning another role in group.
+    VERIFY = "VERIFY"  # Not Implemented yet.
+
+
+YES_EMOJI = "✅"
+NO_EMOJI = "❌"
+
+
+class RoleManager(commands.Cog, name="Role Manager"):
+    """
+    Useful role commands to manage roles on your server.
+    This plugin includes Auto Role, Mass Roling, Reaction Roles, and Targeter.
+    __**About:**__
+    This plugin is a combination and modified version of:
+    - `roleutils` cog made by [PhenoM4n4n](https://github.com/phenom4n4n).
+    Source repository can be found [here](https://github.com/phenom4n4n/phen-cogs/tree/master/roleutils).
+    - `targeter` cog made by [NeuroAssassin](https://github.com/NeuroAssassin).
+    Source repository can be found [here](https://github.com/NeuroAssassin/Toxic-Cogs/tree/master/targeter).
+    __**Note:**__
+    In order for any of the features in this plugin to work, the bot must have `Manage Roles` permission on your server.
+    """
+
+    _id = "config"
+    default_config = {
+        "reactroles": {
+            "message_cache": {},
+            "channels": [],
             "enabled": True,
         },
         "autorole": {
