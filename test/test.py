@@ -7,9 +7,6 @@ import time
 from datetime import datetime
 from discord.ext import commands
 
-from core import checks
-from core.models import PermissionLevel
-
 client = Bot (description="DESCRIPTION", command_prefix="PREFIX")
 
 @client.event
