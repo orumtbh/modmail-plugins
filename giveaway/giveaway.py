@@ -100,7 +100,7 @@ class GiveawayPlugin(commands.Cog):
                     if str(giveaway["message"]) not in self.active_giveaways:
                         break
 
-                    if r.emoji == "<:XiaoJoy:805882042494484511>":
+                    if r.emoji == ":XiaoJoy:":
                         reactions = r
                         reacted_users = await reactions.users().flatten()
                         if len(reacted_users) <= 1:
@@ -276,9 +276,10 @@ class GiveawayPlugin(commands.Cog):
         embed.set_footer(
             text=f"{giveaway_winners} {'winners' if giveaway_winners > 1 else 'winner'} | Ends at"
         )
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
-        await msg.add_reaction("<:XiaoJoy:805882042494484511>")
+        await msg.add_reaction(":XiaoJoy:")
         giveaway_obj = {
             "item": giveaway_item.content,
             "winners": giveaway_winners,
@@ -342,7 +343,7 @@ class GiveawayPlugin(commands.Cog):
             return
 
         for r in message.reactions:
-            if r.emoji == "<:XiaoJoy:805882042494484511>":
+            if r.emoji == ":XiaoJoy:":
                 reactions = r
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
@@ -375,6 +376,7 @@ class GiveawayPlugin(commands.Cog):
                 embed.set_footer(
                     text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Ended at"
                 )
+                embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
                 await message.edit(embed=embed)
                 await ctx.channel.send(
                     f":XiaoJoy: Congratulations {winners_text}, you have won **{embed.title}**!:XiaoJoy: "
