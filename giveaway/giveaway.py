@@ -142,7 +142,7 @@ class GiveawayPlugin(commands.Cog):
                         )
                         await message.edit(embed=embed)
                         await channel.send(
-                            f"<:XiaoJoy:805882042494484511> Congratulations {winners_text}, you have won **{giveaway['item']}**!"
+                            f":XiaoJoy: Congratulations {winners_text}, you have won **{giveaway['item']}**! :XiaoJoy:"
                         )
                         try:
                             self.active_giveaways.pop(str(giveaway["message"]))
@@ -164,6 +164,7 @@ class GiveawayPlugin(commands.Cog):
                     f"React with <:XiaoJoy:805882042494484511> to enter the giveaway!\n\n"
                     f"Time Remaining: **{time_remaining}**"
                 )
+                embed.set_thumbnail(url=thu.content)
                 await message.edit(embed=embed)
                 del channel, guild
                 await asyncio.sleep(
@@ -376,7 +377,7 @@ class GiveawayPlugin(commands.Cog):
                 )
                 await message.edit(embed=embed)
                 await ctx.channel.send(
-                    f"<:XiaoJoy:805882042494484511> Congratulations {winners_text}, you have won **{embed.title}**!<:XiaoJoy:805882042494484511>"
+                    f":XiaoJoy: Congratulations {winners_text}, you have won **{embed.title}**!:XiaoJoy: "
                 )
                 del winners_text, winners, winners_count, reacted_users, embed
                 break
