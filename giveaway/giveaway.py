@@ -425,7 +425,7 @@ class GiveawayPlugin(commands.Cog):
 
     def generate_embed(self, description: str):
         embed = discord.Embed()
-        embed.colour = #4eb9a0
+        embed.colour = self.bot.main_color
         embed.description = description
 
         return embed
