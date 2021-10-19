@@ -100,7 +100,7 @@ class GiveawayPlugin(commands.Cog):
                     if str(giveaway["message"]) not in self.active_giveaways:
                         break
 
-                    if r.emoji == "🎉":
+                    if r.emoji == "🎁":
                         reactions = r
                         reacted_users = await reactions.users().flatten()
                         if len(reacted_users) <= 1:
@@ -203,7 +203,7 @@ class GiveawayPlugin(commands.Cog):
         def cancel_check(msg: discord.Message):
             return msg.content == "cancel" or msg.content == f"{ctx.prefix}cancel"
 
-        embed = discord.Embed(colour=0x00FF00)
+        embed = discord.Embed(colour=0x4eb9a0)
 
         await ctx.send(embed=self.generate_embed("What is the giveaway item?"))
         giveaway_item = await self.bot.wait_for("message", check=check)
@@ -277,7 +277,7 @@ class GiveawayPlugin(commands.Cog):
         )
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
-        await msg.add_reaction("🎉")
+        await msg.add_reaction("🎁")
         giveaway_obj = {
             "item": giveaway_item.content,
             "winners": giveaway_winners,
@@ -341,7 +341,7 @@ class GiveawayPlugin(commands.Cog):
             return
 
         for r in message.reactions:
-            if r.emoji == "🎉":
+            if r.emoji == "🎁":
                 reactions = r
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
