@@ -164,7 +164,7 @@ class GiveawayPlugin(commands.Cog):
                     f"React with <:XiaoJoy:805882042494484511> to enter the giveaway!\n\n"
                     f"Time Remaining: **{time_remaining}**"
                 )
-                embed.set_thumbnail(url=thu.content)
+                embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
                 await message.edit(embed=embed)
                 del channel, guild
                 await asyncio.sleep(
