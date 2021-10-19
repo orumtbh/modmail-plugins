@@ -100,7 +100,7 @@ class GiveawayPlugin(commands.Cog):
                     if str(giveaway["message"]) not in self.active_giveaways:
                         break
 
-                    if r.emoji == ":XiaoJoy:":
+                    if r.emoji == "🎁":
                         reactions = r
                         reacted_users = await reactions.users().flatten()
                         if len(reacted_users) <= 1:
@@ -161,7 +161,7 @@ class GiveawayPlugin(commands.Cog):
 
                 embed = message.embeds[0]
                 embed.description = (
-                    f"React with <:XiaoJoy:805882042494484511> to enter the giveaway!\n\n"
+                    f"React with 🎁 to enter the giveaway!\n\n"
                     f"Time Remaining: **{time_remaining}**"
                 )
                 embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
@@ -270,7 +270,7 @@ class GiveawayPlugin(commands.Cog):
             return
 
         embed.description = (
-            f"React with <:XiaoJoy:805882042494484511> to enter the giveaway!\n\n"
+            f"React with 🎁 to enter the giveaway!\n\n"
             f"Time Remaining: **{datetime.fromtimestamp(giveaway_time).strftime('%d %H:%M:%S')}**"
         )
         embed.set_footer(
@@ -279,7 +279,7 @@ class GiveawayPlugin(commands.Cog):
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/765748332940492810/900004810957410364/XiaoCheerSmaller.png')
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
-        await msg.add_reaction(":XiaoJoy:")
+        await msg.add_reaction("🎁")
         giveaway_obj = {
             "item": giveaway_item.content,
             "winners": giveaway_winners,
@@ -335,7 +335,7 @@ class GiveawayPlugin(commands.Cog):
 
         if len(message.reactions) <= 0:
             embed = message.embeds[0]
-            embed.description = f"Giveaway has ended!\n\nSadly no one participated :("
+            embed.description = f"Giveaway has ended!\n\nSadly no one participated <:XiaoSulk:805882042960052274> "
             embed.set_footer(
                 text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Ended at"
             )
@@ -343,13 +343,13 @@ class GiveawayPlugin(commands.Cog):
             return
 
         for r in message.reactions:
-            if r.emoji == ":XiaoJoy:":
+            if r.emoji == "🎁":
                 reactions = r
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
                     embed = message.embeds[0]
                     embed.description = (
-                        f"Giveaway has ended!\n\nSadly no one participated :("
+                        f"Giveaway has ended!\n\nSadly no one participated <:XiaoSulk:805882042960052274> "
                     )
                     await message.edit(embed=embed)
                     del reacted_users, embed
