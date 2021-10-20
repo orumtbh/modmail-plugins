@@ -127,7 +127,7 @@ class GiveawayPlugin(commands.Cog):
 
                         for _ in range(giveaway["winners"]):
                             winners = await get_random_user(
-                                reacted_users, guild, winners
+                                reacted_users, guild, winners,giveaway_role
                             )
 
                         embed = message.embeds[0]
@@ -294,7 +294,7 @@ class GiveawayPlugin(commands.Cog):
             "guild": ctx.guild.id,
             "channel": channel.id,
             "message": msg.id,
-            "role": giveaway_role.id,
+            "role": giveaway_role,
         }
         self.active_giveaways[str(msg.id)] = giveaway_obj
         await ctx.send("Done!")
@@ -372,7 +372,7 @@ class GiveawayPlugin(commands.Cog):
                     reacted_users[index] = reacted_users[index].id
 
                 for _ in range(winners_count):
-                    winners = await get_random_user(reacted_users, ctx.guild, winners, giveaway_role.id)
+                    winners = await get_random_user(reacted_users, ctx.guild, winners, giveaway_role)
 
                 embed = message.embeds[0]
                 winners_text = ""
