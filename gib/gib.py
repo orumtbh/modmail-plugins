@@ -214,6 +214,13 @@ class GiveawayPlugin(commands.Cog):
             return
         embed.title = giveaway_item.content
         await ctx.send(
+            embed=self.generate_embed("Who can participate?")
+        )
+        role_name = await self.bot.wait_for("message", check=check)
+        if cancel_check(giveaway_winners) is True:
+            await ctx.send("Cancelled.")
+            return
+        await ctx.send(
             embed=self.generate_embed("How many winners are to be selected?")
         )
         giveaway_winners = await self.bot.wait_for("message", check=check)
