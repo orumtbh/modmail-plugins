@@ -215,8 +215,8 @@ class GiveawayPlugin(commands.Cog):
         await ctx.send(
             embed=self.generate_embed("Who can participate?")
         )
-        role_id = await self.bot.wait_for("message", check=check)
-        if cancel_check(role_id) is True:
+        giveaway_role = await self.bot.wait_for("message", check=check)
+        if cancel_check(giveaway_role) is True:
             await ctx.send("Cancelled.")
             return
         await ctx.send(
@@ -294,7 +294,7 @@ class GiveawayPlugin(commands.Cog):
             "guild": ctx.guild.id,
             "channel": channel.id,
             "message": msg.id,
-            "role": role_id.id,
+            "role": giveaway_role.id,
         }
         self.active_giveaways[str(msg.id)] = giveaway_obj
         await ctx.send("Done!")
