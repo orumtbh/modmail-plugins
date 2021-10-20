@@ -48,7 +48,7 @@ class GiveawayPlugin(commands.Cog):
         if str(giveaway["message"]) not in self.active_giveaways:
             return
 
-        async def get_random_user(users, _guild, _winners, role):
+        async def get_random_user(users, _guild, _winners):
             rnd = random.choice(users)
             in_guild = _guild.get_member(rnd)
             if rnd in _winners or in_guild is None or in_guild.id == self.bot.user.id:
@@ -294,6 +294,7 @@ class GiveawayPlugin(commands.Cog):
             "guild": ctx.guild.id,
             "channel": channel.id,
             "message": msg.id,
+            "role": role_name.name,
         }
         self.active_giveaways[str(msg.id)] = giveaway_obj
         await ctx.send("Done!")
