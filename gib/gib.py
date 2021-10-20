@@ -372,7 +372,7 @@ class GiveawayPlugin(commands.Cog):
                     reacted_users[index] = reacted_users[index].id
 
                 for _ in range(winners_count):
-                    winners = await get_random_user(reacted_users, ctx.guild, winners)
+                    winners = await get_random_user(reacted_users, ctx.guild, winners, giveaway_role.id)
 
                 embed = message.embeds[0]
                 winners_text = ""
