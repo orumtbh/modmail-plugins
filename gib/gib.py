@@ -234,7 +234,12 @@ class GiveawayPlugin(commands.Cog):
                 "Giveaway can only be held with 1 or more winners. Cancelling command."
             )
             return
-
+        
+        await ctx.send(
+            embed=self.generate_embed("Who can participate?")
+            giveaway_role = await self.bot.wait_for("message", check=check)
+            return
+            
         await ctx.send(
             embed=self.generate_embed(
                 "How long will the giveaway last?\n\n2d / 2days / 2day -> 2 days\n"
